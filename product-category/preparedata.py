@@ -41,7 +41,6 @@ domains = [o.strip("meta_").strip(".json.gz") for o in fnms]
 dmn2fnm = dict(zip(domains, fnms))
 
 KEYS2USE = set(["category", "description", "title", "brand", "feature", "asin"])
-# https://colab.research.google.com/drive/1Zv6MARGQcrBbLHyjPVVMZVnRWsRnVMpV#scrollTo=7igYuRaV4bF7
 # load the meta data
 def get_meta_data(domain, nrows=None):
     keys2use = KEYS2USE
