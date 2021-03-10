@@ -13,12 +13,7 @@ TODO
 ```
 
 ## Training
-### Setup Development Environment
-```Bash
-make create_environment
-conda activate product-category
-make requirements
-```
+
 
 
 
