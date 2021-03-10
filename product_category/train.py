@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 import pytorch_lightning as pl
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
-from pc_model import PCDataModule, PCModel
+from product_category.pc_model import PCDataModule, PCModel
 import os
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"

@@ -1,9 +1,20 @@
-# Product Category
-Product category prediction model trained based on [Amazon product data](http://jmcauley.ucsd.edu/data/amazon/).
+# Product Category Predicting Model
+Product category prediction model built with:
+- [pytorch](https://github.com/pytorch/pytorch)
+- [huggingface/transformers](https://github.com/huggingface/transformers)
+- [pytorch-lightning](https://github.com/PyTorchLightning/pytorch-lightning) 
+
+and trained using [Amazon product data](http://jmcauley.ucsd.edu/data/amazon/). 
+
+This library supports
+- Predicting categories using the pretrained model
+- Training from scratch, with a transformers model as the starting point
+- Transfer learning from the pretrained model
+
 
 ## Installation
 ```Bash
-pip install product_category
+pip install product-category
 ```
 
 ## Predict with Pre-trained Model
@@ -125,4 +136,6 @@ For example
 python train.py --transfer_learn --data_file_path ../data/sample_data.csv
 ```
 
+## Note on licensing
+The pretrained model is trained using [Amazon product data](http://jmcauley.ucsd.edu/data/amazon/) which is for research purpose. Therefore the pretrained model should be used for research purposes.
 

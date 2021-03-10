@@ -1,6 +1,6 @@
 from argparse import ArgumentParser
 from transformers import AutoTokenizer
-from pc_model import PCModel, mk_tensors
+from product_category.pc_model import PCModel, mk_tensors
 import torch
 import numpy as np
 
