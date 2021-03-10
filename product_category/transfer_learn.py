@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 import pytorch_lightning as pl
 from pytorch_lightning.callbacks.early_stopping import EarlyStopping
-from product_category.pc_model import PCDataModule, PCModel
+from pc_model import PCDataModule, PCModel
 import os
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -14,7 +14,10 @@ def cli_main():
     # ------------
     parser = ArgumentParser()
     parser.add_argument(
-        "--model_name_or_path", type=str, default="distilbert-base-cased"
+        "--model_name_or_path",
+        type=str,
+        help="Path to pretrained model or model identifier from huggingface.co/models.",
+        default="distilbert-base-cased",
     )
     parser.add_argument(
         "--trained_model_path",
@@ -22,14 +25,55 @@ def cli_main():
         help=("Model used to predict."),
         default="../data/transformer_20210307D3.ckpt",
     )
-    parser.add_argument("--data_file_path", type=str)
-    parser.add_argument("--freeze_bert", action="store_true")
-    parser.add_argument("--max_seq_length", type=int, default=128)
-    parser.add_argument("--min_products_for_category", type=int, default=100)
-    parser.add_argument("--train_batch_size", type=int, default=128)
-    parser.add_argument("--val_batch_size", type=int, default=256)
-    parser.add_argument("--dataloader_num_workers", type=int, default=8)
-    parser.add_argument("--pin_memory", action="store_true")
+
+    parser.add_argument(
+        "--data_file_path",
+        help="Path to training data file. "
+        "Data file should be csv with 3 columns: category (categories separated by '|'),title (str),is_validation (0 or 1). "
+        "e.g.: Sports & Outdoors|Outdoor Recreation|Cycling|Clothing|Men|Shorts,Louis Garneau Men's Neo Power Motion Bike Shorts,1",
+        type=str,
+    )
+    parser.add_argument(
+        "--freeze_bert",
+        help="Whether to freeze the pretrained model.",
+        action="store_true",
+    )
+    parser.add_argument(
+        "--max_seq_length",
+        help="The maximum total input sequence length after tokenization. Sequences longer "
+        "than this will be truncated, sequences shorter will be padded.",
+        type=int,
+        default=128,
+    )
+    parser.add_argument(
+        "--min_products_for_category",
+        help="Minimum number of products for a category to be considered in the model.",
+        type=int,
+        default=100,
+    )
+    parser.add_argument(
+        "--train_batch_size",
+        help="How many samples per batch to load for train dataloader.",
+        type=int,
+        default=128,
+    )
+    parser.add_argument(
+        "--val_batch_size",
+        help="How many samples per batch to load for validation dataloader.",
+        type=int,
+        default=256,
+    )
+    parser.add_argument(
+        "--dataloader_num_workers",
+        help="How many subprocesses to use for data loading. 0 means that the data will be loaded in the main process.",
+        type=int,
+        default=8,
+    )
+    parser.add_argument(
+        "--pin_memory",
+        help="Wether to use pin_memory in pytorch dataloader. If True, the data loader will copy Tensors into CUDA pinned memory before returning them.",
+        action="store_true",
+    )
 
     parser = pl.Trainer.add_argparse_args(parser)
     parser = PCModel.add_model_specific_args(parser)

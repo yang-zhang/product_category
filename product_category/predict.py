@@ -1,6 +1,6 @@
 from argparse import ArgumentParser
 from transformers import AutoTokenizer
-from product_category.pc_model import PCModel, mk_tensors
+from pc_model import PCModel, mk_tensors
 import torch
 import numpy as np
 
@@ -13,25 +13,35 @@ def predict(txt, pcmodel, tokenizer):
 
 
 def cli_main():
-    parser = ArgumentParser(add_help=True)
+    parser = ArgumentParser()
     parser.add_argument(
-        "-t", "--text", type=str, help="Text to predict.", required=True
+        "-t", "--text", type=str, help="Product info text to predict.", required=True
     )
     parser.add_argument(
         "--trained_model_path",
         type=str,
-        help=("Model used to predict."),
+        help="Model used to predict.",
         default="../data/transformer_20210307D3.ckpt",
     )
     parser.add_argument(
         "--i2cat_path",
         type=str,
-        help=("i2cat."),
+        help="File name for the ordered list of categories. Each line for a category.",
         default="../data/i2cat_transformer_20210307D3.txt",
     )
-    parser.add_argument("--tokenizer_name", type=str, default="distilbert-base-cased")
+    parser.add_argument(
+        "--tokenizer_name",
+        type=str,
+        help="Tokenizer name.",
+        default="distilbert-base-cased",
+    )
 
-    parser.add_argument("--topn", type=int, default=5)
+    parser.add_argument(
+        "--topn",
+        type=int,
+        help="Number of top predicted categories to display.",
+        default=5,
+    )
 
     args = parser.parse_args()
     with open(args.i2cat_path) as f:

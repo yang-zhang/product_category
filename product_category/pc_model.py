@@ -163,8 +163,25 @@ class PCModel(pl.LightningModule):
     @staticmethod
     def add_model_specific_args(parent_parser):
         parser = ArgumentParser(parents=[parent_parser], add_help=False)
-        parser.add_argument("--learning_rate", type=float, default=5e-5)
-        parser.add_argument("--adam_beta1", type=float, default=0.9)
-        parser.add_argument("--adam_beta2", type=float, default=0.999)
-        parser.add_argument("--adam_epsilon", type=float, default=1e-8)
+        parser.add_argument(
+            "--learning_rate", type=float, help="Learning Rate", default=5e-5
+        )
+        parser.add_argument(
+            "--adam_beta1",
+            type=float,
+            help="The beta1 parameter in Adam, which is the exponential decay rate for the 1st momentum estimates.",
+            default=0.9,
+        )
+        parser.add_argument(
+            "--adam_beta2",
+            type=float,
+            help="The beta2 parameter in Adam, which is the exponential decay rate for the 2nd momentum estimates.",
+            default=0.999,
+        )
+        parser.add_argument(
+            "--adam_epsilon",
+            type=float,
+            help="The epsilon parameter in Adam, which is a small constant for numerical stability.",
+            default=1e-8,
+        )
         return parser
