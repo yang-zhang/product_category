@@ -7,10 +7,19 @@ Product category prediction model built with:
 and trained using [Amazon product data](http://jmcauley.ucsd.edu/data/amazon/). 
 
 This library supports
-- Predicting categories using the pretrained model
-- Training from scratch, with a transformers model as the starting point
-- Transfer learning from the pretrained model
+- Predicting categories using the pretrained model.
+- Training from scratch, with a transformers model as the starting point.
+- Transfer learning from the pretrained model.
 
+## Pretrained model
+The pretrained model is trained using product category and title in the metadata [Amazon product data](http://jmcauley.ucsd.edu/data/amazon/). Each product can have multiple categories.
+We sample 500K products (85% for train; 15% for validation) to train the model, which resulted in ~1900 categories.
+We use [pytorch-lightning](https://github.com/PyTorchLightning/pytorch-lightning) to train a multilabel classification model with the pretrained `distilbert-base-cased` model from [huggingface/transformers](https://github.com/huggingface/transformers) as the starting point.
+This library supports 
+1. directly using this pretrained model to predict the ~1900 categories from an input product title or description; 
+2. using this pretrained model as a starting point to do transfer learning and train a category prediction model on your own categories, as long as you provide training data in the format described below.
+
+You can also train a model from scratch without using this pretrained model, but instead with a transformers model as the starting point.
 
 ## Installation
 ```Bash
@@ -18,7 +27,6 @@ pip install product-category
 ```
 
 ## Predict with Pre-trained Model
-###
 ```
 python product_category/predict.py -h
 usage: predict.py [-h] -t TEXT [--trained_model_path TRAINED_MODEL_PATH]
@@ -37,6 +45,8 @@ optional arguments:
                         Tokenizer name.
   --topn TOPN           Number of top predicted categories to display.
   ```
+
+For example:
 ```
 python predict.py -t "Lykmera Famous TikTok Leggings, High Waist Yoga Pants for Women, Booty Bubble Butt Lifting Workout Running Tights"
 
@@ -59,7 +69,7 @@ Sports & Outdoors|Outdoor Recreation|Camping & Hiking,Folding Pot Stabilizer,0
 ```
 
 ## Training
-Run `python train.py -h` to see full 
+Run `python train.py -h` to see full help list, which includes the options for [pytorch-lightning](https://github.com/PyTorchLightning/pytorch-lightning) functions.
 ```
 python train.py -h
 usage: train.py [-h] [--model_name_or_path MODEL_NAME_OR_PATH]
@@ -122,20 +132,23 @@ optional arguments:
                         The epsilon parameter in Adam, which is a small
                         constant for numerical stability.
 ```
-
 ### Training from Scratch
+Training from scratch, with a transformers model as the starting point.
 
-For example
+For example:
 ```
 python train.py --data_file_path ../data/sample_data.csv
 
 ```
 ### Transfer Learning from Pre-trained Model
-For example
+Transfer learning from the pretrained model.
+
+For example:
 ```
 python train.py --transfer_learn --data_file_path ../data/sample_data.csv
 ```
 
 ## Note on licensing
-The pretrained model is trained using [Amazon product data](http://jmcauley.ucsd.edu/data/amazon/) which is for research purpose. Therefore the pretrained model should be used for research purposes.
+The pretrained model is trained using [Amazon product data](http://jmcauley.ucsd.edu/data/amazon/), which is for research purpose. Therefore, the pretrained model should  also be used for research purposes.
+
 
