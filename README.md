@@ -8,7 +8,7 @@ pip install TODO
 ## Inference
 ###
 ```Bash
-python product-category/predict_single.py -h
+python product_category/predict_single.py -h
 TODO
 ```
 
@@ -16,7 +16,7 @@ TODO
 ### Setup Development Environment
 ```Bash
 make create_environment
-conda activate product-category
+conda activate product_category
 make requirements
 ```
 

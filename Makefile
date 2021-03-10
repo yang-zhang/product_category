@@ -1,6 +1,6 @@
 .PHONY: requirements
 
-PROJECT_NAME=product-category
+PROJECT_NAME=product_category
 
 create_environment:
 	conda create --yes --name $(PROJECT_NAME) python=3.7 anaconda
