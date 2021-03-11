@@ -159,7 +159,6 @@ python train.py --transfer_learn --data_file_path ../data/sample_data.csv --free
 To run with GPU, `pin_memory` for dataloader, and limiting maximum training epochs:
 ```
 python train.py --transfer_learn --data_file_path ../data/sample_data.csv --gpus=1 --pin_memory --max_epochs=100
-
 ```
 
 
