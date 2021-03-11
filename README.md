@@ -69,7 +69,8 @@ Sports & Outdoors|Outdoor Recreation|Camping & Hiking,Folding Pot Stabilizer,0
 ```
 
 ## Training
-Run `python train.py -h` to see full help list, which includes the options for [pytorch-lightning](https://github.com/PyTorchLightning/pytorch-lightning) functions.
+Below are a subset of options for `training.py`. 
+Run `python train.py -h` to see full help list, which includes more options for [pytorch-lightning](https://github.com/PyTorchLightning/pytorch-lightning) functionalities.
 ```
 python train.py -h
 usage: train.py [-h] [--model_name_or_path MODEL_NAME_OR_PATH]
@@ -148,7 +149,25 @@ For example:
 python train.py --transfer_learn --data_file_path ../data/sample_data.csv
 ```
 
-## Note on licensing
+### Useful Pytorch-Lightning Options
+To run with GPU:
+```
+python train.py --transfer_learn --data_file_path ../data/sample_data.csv --gpus=1
+```
+
+To train only a classification head with the transformer backbone frozen:
+```
+python train.py --transfer_learn --data_file_path ../data/sample_data.csv --freeze_bert
+```
+
+To run with GPU, `pin_memory` for dataloader, and limiting maximum training epochs:
+```
+python train.py --transfer_learn --data_file_path ../data/sample_data.csv --gpus=1 --pin_memory --max_epochs=100
+
+```
+
+
+## Note 
 The pretrained model is trained using [Amazon product data](http://jmcauley.ucsd.edu/data/amazon/), which is for research purpose. Therefore, the pretrained model should  also be used for research purposes.
 
 
