@@ -82,8 +82,7 @@ usage: train.py [-h] [--model_name_or_path MODEL_NAME_OR_PATH]
                 [--val_batch_size VAL_BATCH_SIZE]
                 [--dataloader_num_workers DATALOADER_NUM_WORKERS]
                 [--pin_memory] [--logger [LOGGER]]
-                [--learning_rate LEARNING_RATE] [--adam_beta1 ADAM_BETA1]
-                [--adam_beta2 ADAM_BETA2] [--adam_epsilon ADAM_EPSILON]
+                [--learning_rate LEARNING_RATE] 
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -123,15 +122,6 @@ optional arguments:
                         pinned memory before returning them.
   --learning_rate LEARNING_RATE
                         Learning Rate
-  --adam_beta1 ADAM_BETA1
-                        The beta1 parameter in Adam, which is the exponential
-                        decay rate for the 1st momentum estimates.
-  --adam_beta2 ADAM_BETA2
-                        The beta2 parameter in Adam, which is the exponential
-                        decay rate for the 2nd momentum estimates.
-  --adam_epsilon ADAM_EPSILON
-                        The epsilon parameter in Adam, which is a small
-                        constant for numerical stability.
 ```
 ### Training from Scratch
 Training from scratch, with a transformers model as the starting point.
