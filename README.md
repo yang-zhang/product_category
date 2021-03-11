@@ -21,6 +21,12 @@ This library supports
 
 You can also train a model from scratch without using this pretrained model, but instead with a transformers model as the starting point.
 
+### Download Pretrained Model
+Download the pretrained model to `data` folder:
+```Bash
+wget https://github.com/yang-zhang/product_category/releases/download/v0.0.1/transformer_20210307D3.ckpt -P data
+```
+
 ## Installation
 ```Bash
 pip install product-category
