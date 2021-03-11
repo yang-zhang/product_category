@@ -1,4 +1,4 @@
-# Product Category Predicting Model
+# Deep Learning Model for Product Category Prediction
 Product category prediction model built with:
 - [pytorch](https://github.com/pytorch/pytorch)
 - [huggingface/transformers](https://github.com/huggingface/transformers)
