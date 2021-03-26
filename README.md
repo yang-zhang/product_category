@@ -135,7 +135,6 @@ Training from scratch, with a transformers model as the starting point.
 For example:
 ```
 python train.py --data_file_path ../data/sample_data.csv
-
 ```
 ### Transfer Learning from Pre-trained Model
 Transfer learning from the pretrained model.
